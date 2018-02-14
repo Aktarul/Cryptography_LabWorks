@@ -50,3 +50,5 @@ Temporary Items
 .apdisk
 
 .idea/workspace.xml
+*.o
+*.exe
