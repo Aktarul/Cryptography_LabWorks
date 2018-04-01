@@ -39,5 +39,5 @@ void tran_encr(char* mes)
             k++;
         }
     }
-    return;
+    return 0;
 }
