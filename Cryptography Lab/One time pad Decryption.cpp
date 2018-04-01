@@ -7,8 +7,13 @@ int main()
 
     cout<<"Enter cipher text: ";
     gets(mess);                     // input cipher text
-    cout<<"\nEnter Key of Pad: ";
-    gets(OTP);                      // input key of one time pad
+
+
+    ifstream fileIn( "Rec_OTP.txt" );          //opening  sender One Time Pad
+    fileIn >> OTP;                          //taking all contents from file to OTP[]
+    fileIn.close();
+
+    cout<<"\nOne time pad from file: "<<OTP<<endl;      //printing OTP
 
     int len = strlen(mess);         //length of cipher text
 
@@ -28,13 +33,21 @@ int main()
         }
     }
 
+    int pad_len = strlen(OTP);
+
+    //cout<<"OTP before change: "<<OTP<<endl;
+
+    for(int i = 0; i <= pad_len - len ; i++){
+        OTP[i] = OTP[i + len];                  // deleting used characters
+    }
+
+    //cout<<"OTP after change: "<<OTP<<endl;
+
+    ofstream fileOut( "Rec_OTP.txt" );              // writing the rest of content into file
+    fileOut << OTP;
+    fileOut.close();
+
     cout<<endl;
 
     return 0;
 }
-
-/**
-INPUT:
-IPKLPSFHGQ
-TBFRGFARFM
-*/
